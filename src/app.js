@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin:'localhost:5173'
+  origin:'https://localhost:5173'
 }
 ));
 app.use(morgan('dev'));
