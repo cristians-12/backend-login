@@ -1,7 +1,8 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-// import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import { createAccessToken } from "../libs/jwt.js";
+import {TOKEN_SECRET} from '../config.js';
 
 export const register = async (req, res) => {
   const { email, password, username } = req.body;
@@ -79,6 +80,23 @@ export const login = async (req, res) => {
     console.log(error);
   }
 };
+
+export const verify = async (req,res)=>{
+    const {token} = req.cookies;
+    if(!token) return res.status(401).json(['No autorizado.']);
+    jwt.verify(token,TOKEN_SECRET,async (error,user)=>{
+      if(error) return res.status(401).json(['No autorizado.']);
+      const usuarioEnc = await User.findById(user.id);
+      if(!usuarioEnc) return res.status(401).json(['No autorizado.']);
+    }
+    )
+  
+    return res.json({
+      id: usuarioEnc._id,
+      username: usuarioEnc.user,
+      email:usuarioEnc.email,
+    });
+  }
 
 // --------------------Cerrar sesion----------------------------------------------
 
