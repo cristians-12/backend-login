@@ -13,6 +13,9 @@ const router = Router();
 
 router.post("/register", validateSchema(registerSchema), register);
 router.post("/login", validateSchema(loginSchema), login);
+
+router.get("/verify",verifToken);
+
 router.post("/logout", logout);
 router.get("/profile", authRequerida, profile);
 
