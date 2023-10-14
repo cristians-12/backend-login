@@ -4,6 +4,7 @@ import {
   register,
   logout,
   profile,
+  verify,
 } from "../controllers/auth.controller.js";
 import { authRequerida } from "../middlewares/validarToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
@@ -14,7 +15,7 @@ const router = Router();
 router.post("/register", validateSchema(registerSchema), register);
 router.post("/login", validateSchema(loginSchema), login);
 
-router.get("/verify",verifToken);
+router.get("/verify",verify);
 
 router.post("/logout", logout);
 router.get("/profile", authRequerida, profile);
