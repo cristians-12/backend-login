@@ -11,6 +11,13 @@ app.use(cors({
   origin:['http://localhost:5173','https://frontend-login-pi.vercel.app','https://frontend-login.surge.sh','http://localhost:3000/signUp','http://localhost:3000'],
   credentials:true,
 }
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 ));
 app.use(morgan('dev'));
 app.use(express.json());
