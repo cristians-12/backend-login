@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin:['http://localhost:5173','https://frontend-login-pi.vercel.app','https://frontend-login.surge.sh','http://localhost:3000/signUp','http://localhost:3000','https://githubclone-chi.vercel.app'],
+    origin:['http://localhost:5173','https://frontend-login-pi.vercel.app','https://frontend-login.surge.sh','http://localhost:3000','https://githubclone-chi.vercel.app'],
     credentials:true,
   }));
 app.use(morgan('dev'));
